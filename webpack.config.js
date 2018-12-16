@@ -52,7 +52,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(jpe?g|png|jpg|gif|svg|wav)$/i,
+        test: /\.(jpe?g|png|jpg|gif|svg|wav|mp3|ogg)$/i,
         loader: 'file-loader',
       },
       {
