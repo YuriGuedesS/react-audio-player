@@ -1,7 +1,15 @@
 import React from 'react';
+import ReactSVG from 'react-svg';
 import song01 from 'app/assets/r-u-mine.mp3';
 import song02 from 'app/assets/river.mp3';
 import song03 from 'app/assets/beat-the-devils-tattoo.mp3';
+import PlayIcon from 'app/assets/play.svg';
+import PauseIcon from 'app/assets/pause.svg';
+import NextIcon from 'app/assets/next.svg';
+import LoopIcon from 'app/assets/loop.svg';
+import Shuffle from 'app/assets/shuffle.svg';
+import List from 'app/assets/list.svg';
+import SongCover1 from 'app/assets/cover1.jpeg';
 
 // should display (mm:ss) minutes and seconds
 const formattedTime = (time) => {
@@ -22,6 +30,7 @@ class Player extends React.Component {
       currentSong: 0,
       songs: [song01, song02, song03],
       duration: '00',
+      value: 10,
     };
 
     this.createAudio = this.createAudio.bind(this);
@@ -186,7 +195,112 @@ class Player extends React.Component {
       currentTime, duration, playing,
     } = this.state;
     return (
-      <div>
+      <div className="player">
+        <div className="song">
+          <div className="song-cover">
+            <img src={SongCover1} />
+          </div>
+          <div className="song-info">
+            <h2 className="song-title">
+              RU Mine - <span className="song-band">Artick Monkeys</span>
+            </h2>
+            <div className="song-meta-data">
+              <span>
+                320kbps - {' '}
+                44 kHz
+              </span>
+            </div>
+            <div className="song-volume">
+              <input
+                type="range"
+                max={100}
+                min={0}
+                step="1"
+                onChange={value => this.setState({ value })}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="progress">
+        </div>
+        <div className="controls">
+          <div className="controls-song">
+            <button
+              type="button"
+              onClick={this.prevSong}
+              className="btn-previous"
+            >
+              <ReactSVG
+                src={NextIcon}
+                svgClassName="previous"
+              />
+            </button>
+            <button
+              type="button"
+              className="btn-play"
+              onClick={playing ? this.pause : this.play}
+            >
+              <ReactSVG
+                src={playing ? PauseIcon : PlayIcon}
+                svgClassName={playing ? 'pause' : 'play'}
+              />
+            </button>
+           <button
+             type="button"
+             onClick={this.prevSong}
+             className="btn-next"
+           >
+             <ReactSVG
+               src={NextIcon}
+               svgClassName="next"
+             />
+           </button>
+          </div>
+          <div className="controls-sequence">
+            <button
+              type="button"
+              className="btn-loop"
+              onClick={this.toggleLoop}
+            >
+              <ReactSVG
+                src={List}
+                svgClassName="loop"
+              />
+            </button>
+            <button
+              type="button"
+              className="btn-loop"
+              onClick={this.toggleLoop}
+            >
+              <ReactSVG
+                src={Shuffle}
+                svgClassName="loop"
+              />
+            </button>
+            <button
+              type="button"
+              className="btn-loop"
+              onClick={this.toggleLoop}
+            >
+              <ReactSVG
+                src={LoopIcon}
+                svgClassName="loop"
+              />
+            </button>
+            <button
+              className="btn-add"
+              type="button"
+            >
+              Add To <span>+</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+  /*
         <input
           type="range"
           value={currentTime}
@@ -236,9 +350,7 @@ class Player extends React.Component {
           next
         </button>
       </div>
-    );
-  }
-}
+    */
 
 Player.defaultProps = {
 };

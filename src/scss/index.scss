@@ -1,3 +1,201 @@
-body {
-  background: #ccc;
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300px;
 }
+
+$black01: #222326;
+$black02: #1c1d20;
+$green1: #9eae27;
+$white: #fff;
+$gray1: #dfe0e6;
+
+.player {
+  max-width: 456px;
+  height: 230px;
+  background: $black01;
+}
+
+.song {
+  padding: 0.4rem 0.8rem;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.song-cover {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.song-info {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  padding: 0.4rem 1.2rem;
+  flex-direction: column;
+}
+
+.song-title {
+  color: $white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.song-band {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.song-meta-data {
+  height: 20px;
+  font-size: 10px;
+  color: $white;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+}
+
+.song-volume {
+  margin-top: 10px;
+  width: 165px;
+}
+
+.input-range__track--active {
+  background: $green1;
+}
+
+.input-range__slider {
+  background: $gray1;
+  border: $gray1;
+}
+
+.progress {
+  height: 3px;
+  background: #94b51b;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  height: 64px;
+  justify-content: space-between;
+}
+
+.controls-song {
+  position: relative;
+  width: 122px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.controls-sequence {
+  display: flex;
+  align-items: center;
+  svg {
+    fill: $white;
+  }
+}
+
+.btn-play {
+  position: relative;
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid $white;
+  width: 40px;
+  height: 40px;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $white;
+    pointer-events: none;
+  }
+}
+
+.play,
+.pause {
+  fill: $white;
+}
+
+.play {
+  position: absolute;
+  top: 9px;
+  left: 11px;
+}
+
+.pause {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.btn-previous,
+.btn-next {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  svg {
+    fill: $white;
+  }
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-center: center;
+}
+
+.btn-previous {
+  svg {
+    width: 18px;
+  }
+}
+
+.next,
+.previous {
+  position: absolute;
+  top: 4px;
+}
+
+.previous {
+  transform: rotate(-180deg);
+}
+.next {
+  left: 12px;
+}
+
+.btn-next {
+  left: 2px;
+  svg {
+    width: 18px;
+  }
+}
+
+.btn-loop {
+  background: transparent;
+  border: 0;
+  svg {
+    width: 20px;
+    height: 20px;
+    * {
+      fill: $white !important;
+    }
+  }
+}
+
+.btn-add {
+  font-size: 12px;
+  background: transparent;
+  border: 0;
+  color: $white;
+  text-transform: uppercase;
+}
+

@@ -9,7 +9,6 @@
   },
   "author": "Leonardo Nascimento",
   "scripts": {
-    "precommit": "npm run lint && npm test",
     "test": "NODE_ENV=test ./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint ./src",
     "start": "NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --reload",
