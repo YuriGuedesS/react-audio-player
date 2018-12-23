@@ -47,8 +47,7 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.audio = document.createElement('audio');
-    this.audio.src = song01;
+    this.audio = new Audio(song01);
 
     // Media events
     this.audio.addEventListener('timeupdate', () => {
@@ -138,8 +137,7 @@ class Player extends React.Component {
 
   createAudio(url, currentSong) {
     this.audio = null;
-    this.audio = document.createElement('audio');
-    this.audio.src = url;
+    this.audio = new Audio(url);
 
     const { mutted } = this.state;
     if (mutted) {

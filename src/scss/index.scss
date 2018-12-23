@@ -103,7 +103,7 @@ $gray1: #dfe0e6;
 }
 
 .song-balance {
-  width: 50px;
+  width: 55px;
   margin-top: 0.4rem;
   margin-left: 0.4rem;
 }
@@ -278,7 +278,6 @@ $gray1: #dfe0e6;
 /* Range styles */
 input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 100%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
 }
 
