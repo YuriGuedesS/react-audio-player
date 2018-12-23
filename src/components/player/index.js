@@ -31,6 +31,7 @@ class Player extends React.Component {
       songs: [song01, song02, song03],
       duration: '00',
       value: 10,
+      volume: 0.5,
     };
 
     this.createAudio = this.createAudio.bind(this);
@@ -42,6 +43,7 @@ class Player extends React.Component {
     this.nextSong = this.nextSong.bind(this);
     this.prevSong = this.prevSong.bind(this);
     this.getCurrentSong = this.getCurrentSong.bind(this);
+    this.changeVolume = this.changeVolume.bind(this);
   }
 
   componentDidMount() {
@@ -186,12 +188,20 @@ class Player extends React.Component {
     this.createAudio(currentUrlSong, newCurrentSong);
   }
 
+  changeVolume(event) {
+    const { value } = event.target;
+    this.audio.volume = value;
+    this.setState({
+      volume: value,
+    });
+  }
+
   // TODO
   // create svg icon with sound icon and LR balance 
 
   render() {
     const {
-      currentTime, duration, playing,
+      currentTime, duration, playing, volume,
     } = this.state;
     return (
       <div className="player">
@@ -214,9 +224,10 @@ class Player extends React.Component {
                 <div className="song-volume-wrapper">
                   <input
                     className="song-volume"
-                    value={0}
-                    max={100}
-                    onChange={(event) => console.log(event.target.value)}
+                    value={volume}
+                    max={1}
+                    step="0.1"
+                    onChange={this.changeVolume}
                     type="range"
                   />
                   <input
