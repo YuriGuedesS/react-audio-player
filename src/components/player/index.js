@@ -12,7 +12,7 @@ import List from 'app/assets/list.svg';
 import SongCover1 from 'app/assets/cover1.jpeg';
 
 // should display (mm:ss) minutes and seconds
-const formattedTime = (time) => {
+const formattedTime = time => {
   const minutes = Math.floor(time / 60);
   const seconds = (time % 60).toFixed(0);
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
@@ -187,8 +187,7 @@ class Player extends React.Component {
   }
 
   // TODO
-  // fill the range value with a color
-  // styles
+  // create svg icon with sound icon and LR balance 
 
   render() {
     const {
@@ -210,18 +209,52 @@ class Player extends React.Component {
                 44 kHz
               </span>
             </div>
-            <div className="song-volume">
-              <input
-                type="range"
-                max={100}
-                min={0}
-                step="1"
-                onChange={value => this.setState({ value })}
-              />
+            <div className="song-custom">
+              <div className="song-custom-container">
+                <div className="song-volume-wrapper">
+                  <input
+                    className="song-volume"
+                    value={0}
+                    max={100}
+                    onChange={(event) => console.log(event.target.value)}
+                    type="range"
+                  />
+                  <input
+                    className="song-balance"
+                    type="range"
+                    max={100}
+                    min={0}
+                    step="1"
+                    onChange={value => console.log('value', value)}
+                  />
+                </div>
+                <div className="sound-system">
+                  <div className="sound-system-type">
+                    <span>mono</span>
+                    <button>
+                      EQ
+                    </button>
+                  </div>
+                  <div className="sound-system-type">
+                    <span>stereo</span>
+                    <button>
+                      PL
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="progress">
+        <div className="progress-container">
+          <span className="current-time">{formattedTime(currentTime)}</span>
+          <input
+            className="progress"
+            value={currentTime}
+            max={duration || 100}
+            onChange={this.seekTrack}
+            type="range"
+          />
         </div>
         <div className="controls">
           <div className="controls-song">
@@ -247,7 +280,7 @@ class Player extends React.Component {
             </button>
            <button
              type="button"
-             onClick={this.prevSong}
+             onClick={this.nextSong}
              className="btn-next"
            >
              <ReactSVG
@@ -299,58 +332,6 @@ class Player extends React.Component {
     );
   }
 }
-
-  /*
-        <input
-          type="range"
-          value={currentTime}
-          max={duration || 100}
-          onChange={this.seekTrack}
-        />
-        <button
-          type="button"
-          onClick={playing ? this.pause : this.play}
-        >
-          {playing ? 'pause' : 'play'}
-        </button>
-        <button
-          type="button"
-          onClick={this.toggleMute}
-        >
-          mutte
-        </button>
-        <button
-          type="button"
-          onClick={this.toggleLoop}
-        >
-          loop
-        </button>
-        {currentTime && (
-          <p>
-            Current:
-            {formattedTime(currentTime)}
-          </p>
-        )}
-        {duration && (
-          <p>
-            duration:
-            {formattedTime(duration)}
-          </p>
-        )}
-        <button
-          type="button"
-          onClick={this.prevSong}
-        >
-           prev
-        </button>
-        <button
-          type="button"
-          onClick={this.nextSong}
-        >
-          next
-        </button>
-      </div>
-    */
 
 Player.defaultProps = {
 };

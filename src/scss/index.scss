@@ -1,6 +1,7 @@
 * {
   font-family: 'Roboto', sans-serif;
   font-weight: 300px;
+  outline: none;
 }
 
 $black01: #222326;
@@ -11,13 +12,15 @@ $gray1: #dfe0e6;
 
 .player {
   max-width: 456px;
-  height: 230px;
+  height: 220px;
   background: $black01;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .song {
-  padding: 0.4rem 0.8rem;
-  height: 150px;
+  padding: 0 0.8rem;
+  height: 140px;
   display: flex;
   align-items: center;
 }
@@ -27,6 +30,7 @@ $gray1: #dfe0e6;
   height: 100%;
   align-items: center;
   img {
+    border-radius: 3px;
     width: 110px;
     height: 110px;
   }
@@ -36,7 +40,7 @@ $gray1: #dfe0e6;
   display: flex;
   width: 100%;
   height: 100px;
-  padding: 0.4rem 1.2rem;
+  padding: 0.4rem 0.6rem;
   flex-direction: column;
 }
 
@@ -60,9 +64,53 @@ $gray1: #dfe0e6;
   align-items: center;
 }
 
+.song-custom {
+  display: flex;
+  align-items: center;
+}
+
+.song-custom-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sound-system {
+  display: inline-flex;
+}
+
+.song-volume-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.sound-system-type {
+  font-size: 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0.2rem;
+  button {
+    margin-top: 0.2rem;
+    cursor: pointer;
+    background: #222326;
+    border: 0;
+    color: #959191;
+    font-size: 11px;
+    border: 1px solid #959191;
+  }
+}
+
+.song-balance {
+  width: 50px;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+}
+
 .song-volume {
-  margin-top: 10px;
   width: 165px;
+  margin-top: 0.4rem;
 }
 
 .input-range__track--active {
@@ -74,22 +122,42 @@ $gray1: #dfe0e6;
   border: $gray1;
 }
 
+.progress-container {
+  width: 100%;
+  height: 24px;
+  position: relative;
+}
+
+.current-time {
+  color: $white;
+  font-size: 10px;
+  width: 28px;
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
+  top: -8px;
+  right: 21px;
+}
+
 .progress {
   height: 3px;
   background: #94b51b;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .controls {
   display: flex;
   align-items: center;
-  padding: 0 0.5rem;
-  height: 64px;
+  padding: 0 0.8rem;
+  height: 47px;
   justify-content: space-between;
 }
 
 .controls-song {
   position: relative;
-  width: 122px;
+  width: 110px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -98,7 +166,9 @@ $gray1: #dfe0e6;
 .controls-sequence {
   display: flex;
   align-items: center;
+  height: 36px;
   svg {
+    display: flex;
     fill: $white;
   }
 }
@@ -110,9 +180,10 @@ $gray1: #dfe0e6;
   display: flex;
   align-items: center;
   border-radius: 50%;
-  border: 1px solid $white;
-  width: 40px;
-  height: 40px;
+  border: 2px solid $white;
+  width: 37px;
+  height: 36px;
+  cursor: pointer;
   svg {
     width: 20px;
     height: 20px;
@@ -128,14 +199,17 @@ $gray1: #dfe0e6;
 
 .play {
   position: absolute;
-  top: 9px;
-  left: 11px;
+  top: 7px;
+  left: 8px;
 }
 
 .pause {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 7px;
+  left: 6px;
+  path {
+    fill: $white;
+  }
 }
 
 .btn-previous,
@@ -143,6 +217,7 @@ $gray1: #dfe0e6;
   width: 40px;
   height: 40px;
   position: relative;
+  cursor: pointer;
   svg {
     fill: $white;
   }
@@ -173,7 +248,7 @@ $gray1: #dfe0e6;
 }
 
 .btn-next {
-  left: 2px;
+  left: 0px;
   svg {
     width: 18px;
   }
@@ -197,5 +272,116 @@ $gray1: #dfe0e6;
   border: 0;
   color: $white;
   text-transform: uppercase;
+}
+
+
+/* Range styles */
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+
+/* thumb styles */
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: $white;
+  cursor: pointer;
+  margin-top: -6px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: $white;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: $white;
+  cursor: pointer;
+}
+
+/* track styles */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: $green1;
+  border-radius: 1.3px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $green1;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: $green1;
+  border-radius: 20px;
+  border: 0.2px solid $green1;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: $green1;
 }
 
